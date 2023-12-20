@@ -34,9 +34,28 @@ namespace Project1 {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Timer^ timer1;
+	private: System::Windows::Forms::Label^ sentence;
+
+	protected:
+
+
+
+	private: System::Windows::Forms::Label^ label_time;
+	private: System::Windows::Forms::Label^ label_timeNum;
+
+
+
+
+	private: System::Windows::Forms::Timer^ timer;
+	private: System::Windows::Forms::Label^ label_entered_chars;
+	private: System::Windows::Forms::Label^ label_mistakes;
+
+	private: System::Windows::Forms::Label^ label_cpm;
+
+
+
+
+
 	private: System::ComponentModel::IContainer^ components;
 	protected:
 
@@ -66,63 +85,120 @@ namespace Project1 {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->sentence = (gcnew System::Windows::Forms::Label());
+			this->label_time = (gcnew System::Windows::Forms::Label());
+			this->label_timeNum = (gcnew System::Windows::Forms::Label());
+			this->timer = (gcnew System::Windows::Forms::Timer(this->components));
+			this->label_entered_chars = (gcnew System::Windows::Forms::Label());
+			this->label_mistakes = (gcnew System::Windows::Forms::Label());
+			this->label_cpm = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
-			// label1
+			// sentence
 			// 
-			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 48, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->sentence->Font = (gcnew System::Drawing::Font(L"Times New Roman", 72, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(12, 57);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(1117, 68);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Sentence";
-			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			this->sentence->Location = System::Drawing::Point(12, 57);
+			this->sentence->Name = L"sentence";
+			this->sentence->Size = System::Drawing::Size(1117, 129);
+			this->sentence->TabIndex = 0;
+			this->sentence->Text = L"Sentence";
+			this->sentence->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
-			// label2
+			// label_time
 			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(553, 370);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(13, 13);
-			this->label2->TabIndex = 1;
-			this->label2->Text = L"0";
+			this->label_time->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->label_time->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label_time->Location = System::Drawing::Point(507, 591);
+			this->label_time->Name = L"label_time";
+			this->label_time->Size = System::Drawing::Size(73, 64);
+			this->label_time->TabIndex = 3;
+			this->label_time->Text = L"Время:";
+			this->label_time->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
-			// timer1
+			// label_timeNum
 			// 
-			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
+			this->label_timeNum->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->label_timeNum->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label_timeNum->Location = System::Drawing::Point(576, 591);
+			this->label_timeNum->Name = L"label_timeNum";
+			this->label_timeNum->Size = System::Drawing::Size(52, 64);
+			this->label_timeNum->TabIndex = 4;
+			this->label_timeNum->Text = L"60";
+			this->label_timeNum->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			// 
+			// timer
+			// 
+			this->timer->Tick += gcnew System::EventHandler(this, &MyForm::timer_Tick);
+			// 
+			// label_entered_chars
+			// 
+			this->label_entered_chars->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->label_entered_chars->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label_entered_chars->Location = System::Drawing::Point(493, 263);
+			this->label_entered_chars->Name = L"label_entered_chars";
+			this->label_entered_chars->Size = System::Drawing::Size(148, 23);
+			this->label_entered_chars->TabIndex = 5;
+			this->label_entered_chars->Text = L"Символов введено:";
+			this->label_entered_chars->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->label_entered_chars->Visible = false;
+			// 
+			// label_mistakes
+			// 
+			this->label_mistakes->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->label_mistakes->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label_mistakes->Location = System::Drawing::Point(493, 286);
+			this->label_mistakes->Name = L"label_mistakes";
+			this->label_mistakes->Size = System::Drawing::Size(148, 23);
+			this->label_mistakes->TabIndex = 6;
+			this->label_mistakes->Text = L"Кол-во ошибок:";
+			this->label_mistakes->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->label_mistakes->Visible = false;
+			// 
+			// label_cpm
+			// 
+			this->label_cpm->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->label_cpm->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label_cpm->Location = System::Drawing::Point(493, 309);
+			this->label_cpm->Name = L"label_cpm";
+			this->label_cpm->Size = System::Drawing::Size(148, 23);
+			this->label_cpm->TabIndex = 7;
+			this->label_cpm->Text = L"Символов в минуту:";
+			this->label_cpm->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->label_cpm->Visible = false;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::SystemColors::InactiveCaption;
-			this->ClientSize = System::Drawing::Size(1141, 670);
-			this->Controls->Add(this->label2);
-			this->Controls->Add(this->label1);
+			this->BackColor = System::Drawing::SystemColors::MenuHighlight;
+			this->ClientSize = System::Drawing::Size(1141, 664);
+			this->Controls->Add(this->label_cpm);
+			this->Controls->Add(this->label_mistakes);
+			this->Controls->Add(this->label_entered_chars);
+			this->Controls->Add(this->label_timeNum);
+			this->Controls->Add(this->label_time);
+			this->Controls->Add(this->sentence);
 			this->Name = L"MyForm";
 			this->Text = L"Stamina";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
-			this->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::MyForm_KeyPress);
+			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
 #pragma endregion
 	
 	
-	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-		this->label1->Text = "Some text, doesn't matter really";
-	}
-	
-	private: System::Void MyForm_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
-		if (e->KeyChar == this->label1->Text[0]) { this->label2->Text = "Fuck yeah"; }
-	}
-	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
-		this->label2->Text = Convert::ToString(Convert::ToDouble(this->label2->Text) + 0.1);
-	}
+	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
+
 };
 }
