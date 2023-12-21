@@ -55,6 +55,12 @@ namespace Project1 {
 	private: System::Windows::Forms::TextBox^ input;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::RadioButton^ radioButton_one_minute;
+	private: System::Windows::Forms::RadioButton^ radioButton_two_minutes;
+	private: System::Windows::Forms::RadioButton^ radioButton_three_minutes;
+
+
+
 
 
 
@@ -102,6 +108,9 @@ namespace Project1 {
 			this->input = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->radioButton_one_minute = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton_two_minutes = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton_three_minutes = (gcnew System::Windows::Forms::RadioButton());
 			this->SuspendLayout();
 			// 
 			// sentence
@@ -125,9 +134,9 @@ namespace Project1 {
 			// 
 			this->button_start->Font = (gcnew System::Drawing::Font(L"Times New Roman", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button_start->Location = System::Drawing::Point(523, 602);
+			this->button_start->Location = System::Drawing::Point(523, 580);
 			this->button_start->Name = L"button_start";
-			this->button_start->Size = System::Drawing::Size(100, 50);
+			this->button_start->Size = System::Drawing::Size(100, 75);
 			this->button_start->TabIndex = 1;
 			this->button_start->Text = L"START";
 			this->button_start->UseVisualStyleBackColor = true;
@@ -163,9 +172,9 @@ namespace Project1 {
 			this->label_time->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->label_time->Font = (gcnew System::Drawing::Font(L"Times New Roman", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label_time->Location = System::Drawing::Point(1079, 602);
+			this->label_time->Location = System::Drawing::Point(1054, 580);
 			this->label_time->Name = L"label_time";
-			this->label_time->Size = System::Drawing::Size(50, 50);
+			this->label_time->Size = System::Drawing::Size(75, 75);
 			this->label_time->TabIndex = 5;
 			this->label_time->Text = L"60";
 			this->label_time->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -202,12 +211,57 @@ namespace Project1 {
 			this->label2->TabIndex = 8;
 			this->label2->Text = L"Символов в секунду:";
 			// 
+			// radioButton_one_minute
+			// 
+			this->radioButton_one_minute->AutoSize = true;
+			this->radioButton_one_minute->Checked = true;
+			this->radioButton_one_minute->Font = (gcnew System::Drawing::Font(L"Times New Roman", 14.25F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->radioButton_one_minute->Location = System::Drawing::Point(916, 579);
+			this->radioButton_one_minute->Name = L"radioButton_one_minute";
+			this->radioButton_one_minute->Size = System::Drawing::Size(103, 25);
+			this->radioButton_one_minute->TabIndex = 9;
+			this->radioButton_one_minute->TabStop = true;
+			this->radioButton_one_minute->Text = L"1 Минута";
+			this->radioButton_one_minute->UseVisualStyleBackColor = true;
+			this->radioButton_one_minute->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton_one_minute_CheckedChanged);
+			// 
+			// radioButton_two_minutes
+			// 
+			this->radioButton_two_minutes->AutoSize = true;
+			this->radioButton_two_minutes->Font = (gcnew System::Drawing::Font(L"Times New Roman", 14.25F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->radioButton_two_minutes->Location = System::Drawing::Point(916, 602);
+			this->radioButton_two_minutes->Name = L"radioButton_two_minutes";
+			this->radioButton_two_minutes->Size = System::Drawing::Size(108, 25);
+			this->radioButton_two_minutes->TabIndex = 10;
+			this->radioButton_two_minutes->Text = L"2 Минуты";
+			this->radioButton_two_minutes->UseVisualStyleBackColor = true;
+			this->radioButton_two_minutes->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton_two_minutes_CheckedChanged);
+			// 
+			// radioButton_three_minutes
+			// 
+			this->radioButton_three_minutes->AutoSize = true;
+			this->radioButton_three_minutes->Font = (gcnew System::Drawing::Font(L"Times New Roman", 14.25F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->radioButton_three_minutes->Location = System::Drawing::Point(916, 625);
+			this->radioButton_three_minutes->Name = L"radioButton_three_minutes";
+			this->radioButton_three_minutes->Size = System::Drawing::Size(108, 25);
+			this->radioButton_three_minutes->TabIndex = 11;
+			this->radioButton_three_minutes->TabStop = true;
+			this->radioButton_three_minutes->Text = L"3 Минуты";
+			this->radioButton_three_minutes->UseVisualStyleBackColor = true;
+			this->radioButton_three_minutes->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton_three_minutes_CheckedChanged);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::DodgerBlue;
 			this->ClientSize = System::Drawing::Size(1141, 664);
+			this->Controls->Add(this->radioButton_three_minutes);
+			this->Controls->Add(this->radioButton_two_minutes);
+			this->Controls->Add(this->radioButton_one_minute);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->input);
@@ -233,5 +287,13 @@ namespace Project1 {
 	private: System::Void input_TextChanged(System::Object^ sender, System::EventArgs^ e);
 
 	private: System::Void sentence_update();
+	
+	private: System::Void radioButton_one_minute_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void radioButton_two_minutes_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void radioButton_three_minutes_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void change_time(int time);
 };
 }
